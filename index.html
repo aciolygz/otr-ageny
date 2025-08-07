@@ -4,54 +4,51 @@
   <meta charset="utf-8">
   <title>Jarvis • Chat OTR</title>
 
-  <!-- CSS padrão do widget -->
+  <!-- CSS oficial do widget -->
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css">
 
-  <!-- Google Font opcional (igual ChatGPT) -->
+  <!-- Fonte parecida com ChatGPT -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
 
-  <!-- Overrides de estilo -->
   <style>
+    /* ===== RESET GERAL ===== */
     html,body{margin:0;height:100%;font-family:"Inter","Segoe UI",sans-serif}
 
-    /* 1 ▸ remove cabeçalho e tela de boas-vindas */
-    .n8n-chat__header,
-    .n8n-chat__welcome{display:none!important}
+    /* ===== 1 ▸ MATA O HEADER  =====
+       O componente é Web Component com partes <header>.  */
+    :root{
+      --chat--header-height: 0px;          /* encolhe */
+      --chat--header--padding: 0;          /* remove espaço */
+      --chat--header--background: none;    /* sem cor */
+    }
+    /* Fallback via ::part se o browser suportar */
+    n8n-chat::part(header){display:none!important}
 
-    /* 2 ▸ plano de fundo branco como ChatGPT */
+    /* ===== 2 ▸ PLANO DE FUNDO  ===== */
     .n8n-chat__conversation{background:#ffffff!important}
 
-    /* 3 ▸ bolhas do BOT (esquerda) */
+    /* ===== 3 ▸ MENSAGENS ===== */
     .n8n-chat__message--bot   .n8n-chat__message-bubble{
       background:#f7f7f8!important;
       color:#202123!important;
       border-radius:6px!important;
       padding:10px 12px!important;
-      max-width:85%;
       box-shadow:none;
     }
-
-    /* 4 ▸ bolhas do USUÁRIO (direita) */
     .n8n-chat__message--user  .n8n-chat__message-bubble{
-      background:#10a37f!important; /* verde ChatGPT */
+      background:#10a37f!important;
       color:#ffffff!important;
       border-radius:6px!important;
       padding:10px 12px!important;
-      max-width:85%;
-      align-self:flex-end;
       box-shadow:none;
     }
 
-    /* 5 ▸ remove cantinho “shadow” do widget */
+    /* ===== 4 ▸ CONTORNO & ÍCONE  ===== */
     .n8n-chat__container{box-shadow:none!important}
-
-    /* 6 ▸ cor da seta de envio */
-    .n8n-chat__input-send      svg{fill:#10a37f!important}
-
-    /* 7 ▸ placeholder em cinza médio */
+    .n8n-chat__input-send svg{fill:#10a37f!important}
     .n8n-chat__input textarea::placeholder{color:#6b7280}
   </style>
 </head>
@@ -67,15 +64,9 @@
       target: '#chat',
       mode: 'fullscreen',
       showWelcomeScreen: false,
-      initialMessages: [],
+      initialMessages: [],          // nenhuma saudação do widget
       loadPreviousSession: true,
       i18n: {
         en: {
           inputPlaceholder: 'Digite aqui…',
-          title:'', subtitle:'', footer:'', getStarted:''
-        }
-      }
-    });
-  </script>
-</body>
-</html>
+          title:'', subtitle:'', footer:'', g
