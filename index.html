@@ -4,53 +4,44 @@
   <meta charset="utf-8">
   <title>Jarvis • Chat OTR</title>
 
-  <!-- Estilos padrão do widget -->
+  <!-- CSS do widget -->
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css">
 
-  <!-- Ajustes visuais opcionais -->
+  <!-- Ajustes visuais (cores opcionais) -->
   <style>
-    :root {
-      /* altura / largura só valem se usar mode:"window" */
-      --chat--window--width: 420px;
-      --chat--window--height: 600px;
-
-      /* paleta escura minimalista (opcional) */
-      --chat--color-dark: #0f172a;
-      --chat--color-light: #e2e8f0;
-      --chat--color-secondary: #2563eb;
-      --chat--color-white: #ffffff;
-    }
-    /* remove qualquer sobra do body */
     html,body{margin:0;height:100%}
+    /* Esconde completamente header e welcome */
+    .n8n-chat__header,
+    .n8n-chat__welcome{display:none!important}
   </style>
 </head>
 <body>
-  <!-- Contêiner onde o chat será renderizado -->
   <div id="chat" style="height:100%"></div>
 
-  <!-- Script do widget -->
   <script type="module">
     import { createChat } from
       'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
 
     createChat({
       webhookUrl: 'https://aciolygz.app.n8n.cloud/webhook/22cc8e7e-bc8f-4e12-8ed6-75a5eb0f9598/chat',
-      target:   '#chat',
-      mode:     'fullscreen',       // ocupa toda a <div>
-      loadPreviousSession: true,    // mantém histórico
-      showWelcomeScreen: false,     // <— desliga a capa
-      initialMessages: [],          // <— sem balões iniciais
+      target: '#chat',
+      mode: 'fullscreen',
+
+      /* Desliga tudo que é demo */
+      showWelcomeScreen: false,
+      initialMessages: [],
+
+      /* Mantém histórico entre recargas se quiser */
+      loadPreviousSession: true,
+
+      /* Placeholder em PT (único campo que ainda aparece) */
       i18n: {
-        en: {                       // idioma único que o widget aceita hoje
-          title: '',                // esvazia o cabeçalho
-          subtitle: '',
-          footer: '',
-          getStarted: 'New conversation',
-          inputPlaceholder: 'Digite aqui…'
+        en: {
+          inputPlaceholder: 'Digite aqui…',
+          title: '', subtitle: '', footer: '', getStarted: ''
         }
       }
-      // se quiser streaming: enableStreaming: true,
     });
   </script>
 </body>
