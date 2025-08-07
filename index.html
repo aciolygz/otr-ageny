@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <title>Chat OTR</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css">
+    <style>html,body{margin:0;height:100%}</style>
+  </head>
+  <body>
+    <div id="chat" style="height:100%"></div>
+
+    <script type="module">
+      import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+      createChat({
+        webhookUrl: 'https://aciolygz.app.n8n.cloud/webhook/22cc8e7e-bc8f-4e12-8ed6-75a5eb0f9598/chat',
+        target: '#chat',
+        mode: 'fullscreen',
+        // opcional: texto de boas-vindas
+        // initialMessages: [{ role: 'assistant', content: 'Olá! Em que posso ajudar?' }]
+      });
+    </script>
+  </body>
+</html>
